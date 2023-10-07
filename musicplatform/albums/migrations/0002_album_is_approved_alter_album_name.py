@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('albums', '0001_initial'),
+        ("albums", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='album',
-            name='is_approved',
+            model_name="album",
+            name="is_approved",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='album',
-            name='name',
-            field=models.CharField(default='New Album', max_length=20),
+            model_name="album",
+            name="name",
+            field=models.CharField(default="New Album", max_length=20),
         ),
     ]

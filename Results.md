@@ -23,7 +23,7 @@ Artist.objects.all().filter(stage_name__startswith='a')
 
 ## in 2 different ways, create some albums and assign them to any artists (hint: use objects manager and use the related object reference)
 
-elwaili = Artist.objects.get(stage_name="El Waili")
+elwaili = Artist.objects.get(stage_name="El Waili")  
 travis = Artist.objects.get(stage_name="Travis Scott")
 
 import pytz  

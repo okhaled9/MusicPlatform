@@ -4,7 +4,7 @@ from artists.models import Artist
 
 class Album(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=20)
     creation_datetime = models.DateTimeField(auto_now_add=True)
     release_datetime = models.DateTimeField()
     cost = models.DecimalField(decimal_places=2, max_digits=10)
@@ -12,3 +12,6 @@ class Album(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        unique_together = ("artist", "name")

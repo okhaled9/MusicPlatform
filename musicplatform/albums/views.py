@@ -1,9 +1,12 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
 from .models import Album
 from .serializers import *
-from django.conf import settings
+
+from albums.models import Album
 
 
 class AlbumViewSet(viewsets.ModelViewSet):
@@ -13,22 +16,14 @@ class AlbumViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=["PATCH"], url_path="approve")
     def approve(self, request, **kwargs):
-        if type(request.data["approve"]) != bool:
-            return Response(
-                {"detail": "approve has to be a boolean"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-        approve = True if request.data["approve"] else False
+        try:
+            album = get_object_or_404(self.get_queryset(), name=request.data["album_name"])
+            approve = request.data["approve"]
+            if (type(request.data["approve"]) != bool): raise KeyError("approve is required to be a boolean")
+        except Exception as e:
+            return Response({"detail": repr(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        albums = self.get_queryset()
-
-        if "approve" not in request.data:
-            return Response(
-                {"detail": "approve is required in the body"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        albums.update(is_approved=approve)
-
-        message = "all approved" if approve else "all disapproved"
-        return Response({"detail": message}, status=status.HTTP_200_OK)
+        album.is_approved = approve
+        album.save()
+        message = f" '{album.name}' is {"approved" if approve else "disapproved"}"
+        return Response({"message": message}, status=status.HTTP_200_OK)

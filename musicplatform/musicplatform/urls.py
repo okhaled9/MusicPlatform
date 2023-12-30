@@ -29,3 +29,8 @@ urlpatterns = [
     path("api/", include(router.urls)),
     path("admin/", admin.site.urls),
 ]
+
+# Third-party libraries
+urlpatterns += [
+    path("__debug__/", include("debug_toolbar.urls")),
+]

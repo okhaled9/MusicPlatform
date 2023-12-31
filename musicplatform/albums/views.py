@@ -10,7 +10,7 @@ from albums.models import Album
 
 
 class AlbumViewSet(viewsets.ModelViewSet):
-    queryset = Album.objects.all()
+    queryset = Album.objects.select_related("artist").all()
     serializer_class = AblumSerializer
     lookup_field = "name"
 

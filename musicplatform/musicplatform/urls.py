@@ -19,10 +19,13 @@ from django.urls import path, include
 from rest_framework import routers
 from albums.views import *
 from artists.views import *
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter(1)
 router.register("artists", ArtistViewSet)
 router.register("albums", AlbumViewSet)
+router.register("songs", SongViewSet)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -34,3 +37,4 @@ urlpatterns = [
 urlpatterns += [
     path("__debug__/", include("debug_toolbar.urls")),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

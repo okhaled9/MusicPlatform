@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Artist(models.Model):
-    stage_name = models.CharField(max_length=50, unique=True)
+    stage_name = models.CharField(primary_key=True, max_length=50)
     social_link = models.URLField(blank=True)
 
     @property

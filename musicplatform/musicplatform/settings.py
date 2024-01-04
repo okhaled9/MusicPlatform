@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "artists",
     "albums",
     "debug_toolbar",
+    "imagekit",
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+MEDIA_ROOT = BASE_DIR / Path("albums")
+MEDIA_URL = ""

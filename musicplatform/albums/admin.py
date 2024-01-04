@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Album
+from .models import Album, Song
 
 
 class AlbumForm(forms.ModelForm):
@@ -16,3 +16,4 @@ class AlbumAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Album, AlbumAdmin)
+admin.site.register(Song)

@@ -23,7 +23,7 @@ class AlbumViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({"detail": repr(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        message = f" 'all albums {"approved" if approve else "disapproved"}"
+        message = f"all albums {"approved" if approve else "disapproved"}"
         return Response({"message": message}, status=status.HTTP_200_OK)
 
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "albums",
     "debug_toolbar",
     "imagekit",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
@@ -136,5 +137,5 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-MEDIA_ROOT = BASE_DIR / Path("albums")
-MEDIA_URL = ""
+MEDIA_ROOT = BASE_DIR / Path("albums/media")
+MEDIA_URL = "media/"

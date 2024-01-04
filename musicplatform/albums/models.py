@@ -39,13 +39,3 @@ class Song(models.Model):
 
     class Meta:
         unique_together = ("album", "name")
-
-
-@receiver(signal=post_delete, sender=Song)
-def delete_cover(instance, **kwargs):
-    # delete cover and audio after object is deleted
-    cover_path = Path(instance.cover.path)
-    cover_path.unlink()
-
-    audio_path = Path(instance.audio.path)
-    audio_path.unlink()

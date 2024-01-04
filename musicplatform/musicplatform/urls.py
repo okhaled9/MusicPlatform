@@ -22,14 +22,13 @@ from artists.views import *
 from django.conf.urls.static import static
 from django.conf import settings
 
-router = routers.DefaultRouter(1)
+router = routers.DefaultRouter()
 router.register("artists", ArtistViewSet)
 router.register("albums", AlbumViewSet)
 router.register("songs", SongViewSet)
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("api/", include(router.urls)),
+    path("", include(router.urls)),
     path("admin/", admin.site.urls),
 ]
 
